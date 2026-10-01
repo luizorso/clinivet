@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Listagem de Perfis</title>
+        <link rel="stylesheet" th:href="@{/styleListar.css}">
+        <!--Ícones do bootstrap icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+           <!-- Css da Navbar -->
+        <link rel="stylesheet" th:href="@{/navbar.css}">
+    </head>
+    <body> 
+        <!-- Importação do menu Navbar -->
+        <div th:replace="~{fragments/navbar :: menu}"></div>
+        
+        <div clas="main-container">
+        <div class="container">
+            <div th:if="${mensagem}" style="color:green; font-weight:bold">
+                <p th:text ="${mensagem}"/></p>
+            </div>
+            <div class="header-actions">
+                <h3>Listagem de Clientes</h3>
+                <a th:href="@{/clientes/novo}" class="btn-primary">Novo Cliente</a>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Data Nascimento</th>
+                            <th>Email</th>
+                            <th>Observações</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cliente : ${clientes}">
+                            <td class="col-codigo" th:text="${#strings.substring(cliente.idCliente, 0, 8) + '...'}" th:title="${cliente.idCliente}"></td>
+                            <td th:text="${cliente?.nome}"></td>
+                            <td class="col-nowrap"th:text="${cliente?.cpf}"></td>
+                            <td class="col-nowrap" th:text="${#temporals.format(cliente?.dataNascimento, 'dd/MM/yyyy')}"></td>
+                            <td th:text="${cliente?.email}"></td>
+                            <td class="col-obs" th:text="${cliente?.observacoesGerais}"></td>
+                            <td class="actions-cell">
+                                <a th:href="@{/clientes/editar/{idCliente}(idCliente=${cliente.idCliente})}" 
+                                   class="btn-action edit" title="edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                       Editar
+                                </a>
+                            </td>
+                            <td>
+                            <!--Formulário apontando para a nova rota POST de Exclusão -->
+                            <form th:action="@{/clientes/excluir/{id}(id=${cliente.idCliente})}"
+                                method="post" style="dysplay:inline;">
+                                <button type="submit" 
+                                        class="btn-action delete" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este Cliente?');">
+                                         <i class="bi bi-trash"></i>Excluir
+                                </button>
+                            </form>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(clientes)}">
+                            <td colspan="3" class="empty-mesagem">Nenhum cliente cadastrado!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

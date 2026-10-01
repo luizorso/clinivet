@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Container principal que centraliza o conteúdo na tela */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+/* Card central com a tabela */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 1300px; /* Aumentado para ocupar melhor telas médias e grandes */
+}
+
+/* Cabeçalho da página e botão Novo */
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+h3 {
+    color: #1a252f;
+    font-size: 1.5rem;
+}
+
+/* Botão para novo cadastro */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* Wrapper para permitir rolagem horizontal suave se necessário */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Estilização da Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Impede que cabeçalhos como 'Data Nascimento' quebrem em duas linhas */
+}
+
+td {
+    border-bottom: 1px solid #e9ecef;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+/* Regras específicas para colunas */
+.col-codigo {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #6c757d;
+    white-space: nowrap;
+}
+
+.col-nowrap {
+    white-space: nowrap;
+}
+
+.col-obs {
+    max-width: 250px;
+    word-break: break-word;
+}
+
+/* Estilização para as ações da tabela */
+.actions-cell {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-action {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+/* Ação de Editar */
+.btn-action.edit {
+    color: #0d6efd;
+    background-color: #e7f1ff;
+}
+
+.btn-action.edit:hover {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+/* Ação de Excluir */
+.btn-action.delete {
+    color: #dc3545;
+    background-color: #f8d7da;
+}
+
+.btn-action.delete:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+/* Efeito Zebrado e Hover nas Linhas */
+tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Ajustes para Responsividade */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 15px 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-primary {
+        text-align: center;
+    }
+
+    th, td {
+        padding: 10px 10px;
+        font-size: 0.88rem;
+    }
+}
