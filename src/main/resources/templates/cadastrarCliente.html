@@ -17,7 +17,7 @@
 
         <form th:action="@{/clientes/salvar}" th:object="${clienteDTO}" method="post">
                <h3 th:text="${titulo}"></h3>
-               <input type="hidden" th:field="*{idCliente}">
+               <input type="hidden" th:field="*{id}">
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" th:field="*{nome}" required />
@@ -46,7 +46,7 @@
                 <textarea id="observacao" th:field="*{observacoesGerais}"></textarea>
             </div>
 
-            <button type="submit" th:text="${clienteDTO.idCliente != null ? 'Atualizar' : 'Salvar'}"></button>
+            <button type="submit" th:text="${clienteDTO.id != null ? 'Atualizar' : 'Salvar'}"></button>
             <a th:href="@{/clientes}"  style="display: block; width: 100%; 
                         text-align: center; 
                         padding: 12px; margin-top: 10px; background-color: #6c757d; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1rem; box-sizing: border-box;">Cancelar</a>

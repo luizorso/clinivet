@@ -3,7 +3,6 @@ package com.cepestm.controller;
 import com.cepestm.dto.ClienteDTO;
 import com.cepestm.entity.Cliente;
 import com.cepestm.service.ClienteService;
-import java.util.UUID;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +34,8 @@ public class ClienteController {
     @PostMapping("/salvar")
     public String salvarCliente(@ModelAttribute("clienteDTO") ClienteDTO dto,
             RedirectAttributes redAttributos) {
-        if (dto.idCliente() != null) {
-            service.update(dto.idCliente(), dto);
+        if (dto.id() != null) {
+            service.update(dto.id(), dto);
             redAttributos.addFlashAttribute("mensagem",
                     "Cliente Cadastrado com sucesso!");
         } else {
@@ -47,19 +46,19 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    @PostMapping("/excluir/{idCliente}")
-    public String excluirPerfil(@PathVariable("idCliente") UUID idCliente, RedirectAttributes redAttributes) {
-        service.excluir(idCliente);
+    @PostMapping("/excluir/{id}")
+    public String excluirPerfil(@PathVariable("id") Long id, RedirectAttributes redAttributes) {
+        service.excluir(id);
         redAttributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso!");
         return "redirect:/clientes";
     }
 
-    @GetMapping("/editar/{idCliente}")
-    public String editarCliente(@PathVariable("idCliente") UUID idCliente, Model model) {
-        Cliente c = service.buscarPorId(idCliente);
+    @GetMapping("/editar/{id}")
+    public String editarCliente(@PathVariable("id") Long id, Model model) {
+        Cliente c = service.buscarPorId(id);
 
         ClienteDTO clienteDTO = new ClienteDTO(
-                c.getIdCliente(),
+                c.getId(),
                 c.getNome(),
                 c.getCpf(),
                 c.getDataNascimento(),

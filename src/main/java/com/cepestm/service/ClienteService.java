@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+
 
 
 @Service
@@ -21,29 +21,26 @@ public class ClienteService {
 
     // Salvar ou Atualizar
     @Transactional
-    public ClienteDTO salvar(ClienteDTO dto) {
-        Cliente cliente = dto.toCliente();
-        cliente = rep.save(cliente);
-        return new ClienteDTO(cliente);
+    public Cliente salvar(ClienteDTO dto) {
+        Cliente cliente =  rep.save(dto.toCliente());
+        return cliente;
     }
 
     // Listar Todos
-    public List<ClienteDTO> listarTodos() {
-        return rep.findAll()
-                .stream()
-                .map(ClienteDTO::new) // Utiliza o construtor ClienteDTO(Cliente entity)
-                .toList();
+    public List<Cliente> listarTodos() {
+        return rep.findAll();
+              
     }
 
     // Buscar por ID
-    public Cliente buscarPorId(UUID id) {
+    public Cliente buscarPorId(Long id) {
         return rep.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com o ID: " + id));
         
     }
     
     @Transactional
-    public Cliente update(UUID id, ClienteDTO dto){
+    public Cliente update(Long id, ClienteDTO dto){
         Cliente cliente = buscarPorId(id);
         cliente.setNome(dto.nome());
         cliente.setCpf(dto.cpf());
@@ -55,7 +52,7 @@ public class ClienteService {
     
     // Excluir por ID
     @Transactional
-    public void excluir(UUID id) {
+    public void excluir(Long id) {
         Cliente cliente = buscarPorId(id);
         
         if (!rep.existsById(id)) {

@@ -38,14 +38,14 @@
                     </thead>
                     <tbody>
                         <tr th:each="cliente : ${clientes}">
-                            <td class="col-codigo" th:text="${#strings.substring(cliente.idCliente, 0, 8) + '...'}" th:title="${cliente.idCliente}"></td>
+                            <td class="col-codigo" th:text="${cliente.id}"></td>
                             <td th:text="${cliente?.nome}"></td>
                             <td class="col-nowrap"th:text="${cliente?.cpf}"></td>
                             <td class="col-nowrap" th:text="${#temporals.format(cliente?.dataNascimento, 'dd/MM/yyyy')}"></td>
                             <td th:text="${cliente?.email}"></td>
                             <td class="col-obs" th:text="${cliente?.observacoesGerais}"></td>
                             <td class="actions-cell">
-                                <a th:href="@{/clientes/editar/{idCliente}(idCliente=${cliente.idCliente})}" 
+                                <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" 
                                    class="btn-action edit" title="edit">
                                     <i class="bi bi-pencil-square"></i>
                                        Editar
@@ -53,8 +53,8 @@
                             </td>
                             <td>
                             <!--Formulário apontando para a nova rota POST de Exclusão -->
-                            <form th:action="@{/clientes/excluir/{id}(id=${cliente.idCliente})}"
-                                method="post" style="dysplay:inline;">
+                            <form th:action="@{/clientes/excluir/{id}(id=${cliente.id})}"
+                                method="post" style="display:inline;">
                                 <button type="submit" 
                                         class="btn-action delete" 
                                         title="Excluir"

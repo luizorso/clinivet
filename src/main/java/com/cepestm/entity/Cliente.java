@@ -2,16 +2,17 @@ package com.cepestm.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 @Entity
 @Table(name = "cliente")
+
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_cliente")
-    private UUID idCliente;
+    private Long id;
 
     @Column(nullable = false, length = 150)
     private String nome;
@@ -28,24 +29,67 @@ public class Cliente {
     @Column(name = "observacoes_gerais", length = 500)
     private String observacoesGerais;
 
-    public Cliente() {}
+    public Cliente(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String observacoesGerais) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.observacoesGerais = observacoesGerais;
+    }
 
-    // Getters e Setters
-    public UUID getIdCliente() { return idCliente; }
-    public void setIdCliente(UUID idCliente) { this.idCliente = idCliente; }
+    public Cliente() {
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDate getDataNascimento() { return dataNascimento; }
-    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+    public String getNome() {
+        return nome;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getObservacoesGerais() { return observacoesGerais; }
-    public void setObservacoesGerais(String observacoesGerais) { this.observacoesGerais = observacoesGerais; }
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getObservacoesGerais() {
+        return observacoesGerais;
+    }
+
+    public void setObservacoesGerais(String observacoesGerais) {
+        this.observacoesGerais = observacoesGerais;
+    }
+    
+    
+
+
 }
