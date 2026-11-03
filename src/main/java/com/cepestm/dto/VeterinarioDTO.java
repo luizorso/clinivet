@@ -17,6 +17,20 @@ LocalDate dataNascimento
 )
 
 {
+    
+    // construtor para converter de Entidade para DTO (Usado na Edição)
+    public VeterinarioDTO(Veterinario veterinario) {
+        this(
+            veterinario.getId(),
+            veterinario.getNome(),
+            veterinario.getCpf(),
+            veterinario.getCrmv(),
+            veterinario.getSalario(),
+            veterinario.getEmail(),
+            veterinario.getDataNascimento()
+        );
+    }
+    
     /*Construtor utilitário para cadastros novos (sem ID) */
 
     public VeterinarioDTO(String nome, String cpf, String crmv, BigDecimal salario,
